@@ -7,7 +7,8 @@ delay = 0.1
 SCREEN_SIZE = 600
 FONT = ("Courier", 24, "normal")
 SEGMENT_SIZE = 20
-SEGMENT_COLOR = "grey"
+SEGMENT_COLOR = "green"
+HEAD_COLOR = "black"
 FOOD_COLOR = "red"
 MOVE_DELAY = 100
 
@@ -21,7 +22,7 @@ window.tracer(0)  # turns off screen updates
 head = turtle.Turtle()
 head.speed(0)  # animation speed 0 is fastest
 head.shape("square")
-head.color("black")
+head.color(HEAD_COLOR)
 head.penup()  # prevents the typical turtle line drawing
 head.goto(0, 0)  # sets the turtle at the origin
 head.direction = "stop"
@@ -100,6 +101,7 @@ def create_segment(color):
     new_segment.penup()
     return new_segment
 
+
 # Keybindings
 
 window.listen()
@@ -133,7 +135,7 @@ while True:
         delay = 0.1
         #
         pen.clear()
-        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
+        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=FONT)
 
     if head.distance(food) < SEGMENT_SIZE:
         # Move the food to a random spot
@@ -152,7 +154,7 @@ while True:
             high_score = score
 
         pen.clear()
-        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=("Courier", 24, "normal"))
+        pen.write("Score: {}  High Score: {}".format(score, high_score), align="center", font=FONT)
 
     # Move the end segments first in reverse order
     for index in range(len(segments) - 1, 0, -1):
@@ -185,4 +187,3 @@ while True:
     time.sleep(delay)
 
 window.mainloop()
-
